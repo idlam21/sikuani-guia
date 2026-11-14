@@ -217,7 +217,8 @@ body.show-g mark.g::after{content:attr(data-t);font-size:.62em;font-weight:800;v
 .draft{font-size:.9rem;color:var(--muted);margin:10px 0 18px}
 
 /* ---- Quellen / Team ---- */
-.src{margin:0;padding-left:1.2em;display:grid;gap:10px}
+.src{margin:0;padding:0 0 0 2em;list-style:none;display:grid;gap:12px}
+.src li{text-indent:-2em}
 .src li{overflow-wrap:anywhere}
 .team{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;margin-top:20px}
 .team div{padding:14px 16px;border-radius:12px;background:var(--surface-2)}
@@ -673,12 +674,12 @@ const KI_NO = [
 ];
 
 const SOURCES = [
-  { t:"Der Orinoco – Auen, Weiden und Feuchtsavannen. (o. D.). WWF Deutschland.", u:"https://www.wwf.de/themen-projekte/projektregionen/orinoco" },
-  { t:"Hulatt, L. (2022, 30. Juni). Primärwald: Definition, Erklärung und Merkmale. StudySmarter.", u:"https://www.studysmarter.de/schule/geographie/landwirtschaft/primaerwald/" },
-  { t:"La comunidad sikuani, un pueblo que aporta a la construcción de paz en Colombia [Die Gemeinschaft der Sikuani – ein Volk, das zum Friedensaufbau in Kolumbien beiträgt]. (2022, 10. August). Naciones Unidas en Colombia.", u:"https://colombia.un.org/es/194320-la-comunidad-sikuani-un-pueblo-que-aporta-la-construcci%C3%B3n-de-paz-en-colombia" },
-  { t:"Canal Trece Colombia. (2020, 23. April). Plantas de Poder/Yopo [Kraftpflanzen/Yopo]. YouTube.", u:"https://www.youtube.com/watch?v=NZgr6aQquEc&t=56" },
-  { t:"Queixalós, F. (1988). Diccionario sikuani-español [Sikuani-Spanisch-Wörterbuch]. Centro Colombiano de Estudios en Lenguas Aborígenes, Universidad de los Andes.", u:"https://www.academia.edu/4224055/Diccionario_Sikuani_Espa%C3%B1ol" },
-  { t:"Lenguas Guahibo. (o. D.). Diccionario Sikuani-Español. Pueblos Originarios.", u:"https://pueblosoriginarios.com/lenguas/sikuani.php" }
+  { t:"Canal Trece Colombia. (2020, 23. April). *Plantas de poder/Yopo* [Kraftpflanzen/Yopo] [Video]. YouTube.", u:"https://www.youtube.com/watch?v=NZgr6aQquEc&t=56" },
+  { t:"Hulatt, L. (2022, 30. Juni). *Primärwald: Definition, Erklärung und Merkmale*. StudySmarter.", u:"https://www.studysmarter.de/schule/geographie/landwirtschaft/primaerwald/" },
+  { t:"Naciones Unidas en Colombia. (2022, 10. August). *La comunidad sikuani, un pueblo que aporta a la construcción de paz en Colombia* [Die Gemeinschaft der Sikuani – ein Volk, das zum Friedensaufbau in Kolumbien beiträgt].", u:"https://colombia.un.org/es/194320-la-comunidad-sikuani-un-pueblo-que-aporta-la-construcci%C3%B3n-de-paz-en-colombia" },
+  { t:"Pueblos Originarios. (o. D.). *Lenguas Guahibo: Diccionario Sikuani-Español* [Guahibo-Sprachen: Sikuani-Spanisch-Wörterbuch].", u:"https://pueblosoriginarios.com/lenguas/sikuani.php" },
+  { t:"Queixalós, F. (1988). *Diccionario sikuani-español* [Sikuani-Spanisch-Wörterbuch]. Centro Colombiano de Estudios en Lenguas Aborígenes, Universidad de los Andes.", u:"https://www.academia.edu/4224055/Diccionario_Sikuani_Espa%C3%B1ol" },
+  { t:"WWF Deutschland. (o. D.). *Der Orinoco – Auen, Weiden und Feuchtsavannen*.", u:"https://www.wwf.de/themen-projekte/projektregionen/orinoco" }
 ];
 
 const TEAM = [
@@ -992,7 +993,7 @@ var ART = (function(){
 
   /* ---------- Quellen, Team ---------- */
   $("#src").innerHTML = SOURCES.map(function(s){
-    return '<li>'+esc(s.t)+' <a href="'+s.u+'" target="_blank" rel="noopener noreferrer">'+esc(s.u)+'</a></li>';
+    return '<li>'+esc(s.t).replace(/\*([^*]+)\*/g,'<em>$1</em>')+' <a href="'+s.u+'" target="_blank" rel="noopener noreferrer">'+esc(s.u)+'</a></li>';
   }).join("");
   $("#team").innerHTML = TEAM.map(function(m){
     return '<div><span>'+esc(m.r)+'</span><b>'+esc(m.n)+'</b></div>';
